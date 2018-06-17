@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-import PostListing from "../components/PostListing/PostListing";
+import Home from "../components/Home/Home";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
 
@@ -14,36 +14,10 @@ class Index extends React.Component {
           <link rel="canonical" href={`${config.siteUrl}`} />
         </Helmet>
         <SEO postEdges={postEdges} />
-        <PostListing postEdges={postEdges} />
+        <Home />
       </div>
     );
   }
 }
 
 export default Index;
-
-/* eslint no-undef: "off"*/
-export const pageQuery = graphql`
-  query IndexQuery {
-    allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            tags
-            cover
-            date
-          }
-        }
-      }
-    }
-  }
-`;
